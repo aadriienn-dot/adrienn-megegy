@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="hu-HU">
+  <info>
+    <title>Adrienn DE irodalomjegyzek vegleges</title>
+    <id>http://www.zotero.org/styles/adrienn-de-irodalomjegyzek-vegleges</id>
+    <link href="http://www.zotero.org/styles/adrienn-de-irodalomjegyzek-vegleges" rel="self"/>
+    <category citation-format="author-date"/>
+    <category field="generic-base"/>
+    <updated>2026-05-04T00:00:00+00:00</updated>
+  </info>
+
+  <locale xml:lang="hu-HU">
+    <terms>
+      <term name="and">és</term>
+      <term name="no date">é. n.</term>
+      <term name="editor" form="short">
+        <single>szerk.</single>
+        <multiple>szerk.</multiple>
+      </term>
+    </terms>
+  </locale>
+
+  <!-- Bibliográfiai szerzőlista:
+       Gerőcs A. – Nagy T. – Nemes-Barnás K. – Májer J.
+       FONTOS: a szerzők közötti delimiter a <name> elemben van, mert ezt kezeli stabilan a Mendeley. -->
+  <macro name="author-bib">
+    <names variable="author">
+      <name delimiter=" – " delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=" " initialize-with=". "/>
+      <substitute>
+        <names variable="editor">
+          <name delimiter=" – " delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=" " initialize-with=". "/>
+        </names>
+        <names variable="translator">
+          <name delimiter=" – " delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=" " initialize-with=". "/>
+        </names>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <!-- Szövegközi hivatkozás: Campbell és Pedersen, 2007 -->
+  <macro name="author-cite">
+    <names variable="author">
+      <name form="short" and="text" delimiter=", " delimiter-precedes-last="never" initialize-with=". "/>
+      <substitute>
+        <names variable="editor"/>
+        <names variable="translator"/>
+        <text variable="title" form="short"/>
+      </substitute>
+    </names>
+  </macro>
+
+  <macro name="year">
+    <choose>
+      <if variable="issued">
+        <date variable="issued">
+          <date-part name="year"/>
+        </date>
+      </if>
+      <else>
+        <text term="no date"/>
+      </else>
+    </choose>
+  </macro>
+
+  <macro name="title">
+    <text variable="title"/>
+  </macro>
+
+  <macro name="journal">
+    <group delimiter=". ">
+      <text variable="container-title" form="long" font-style="italic"/>
+      <group>
+        <text variable="volume"/>
+        <text variable="issue" prefix=". "/>
+        <text variable="page" prefix=": "/>
+      </group>
+    </group>
+  </macro>
+
+  <macro name="publisher">
+    <group delimiter=", ">
+      <text variable="publisher"/>
+      <text variable="publisher-place"/>
+    </group>
+  </macro>
+
+  <macro name="editor-bib">
+    <names variable="editor">
+      <name delimiter=", " delimiter-precedes-last="never" name-as-sort-order="all" sort-separator=" " initialize-with=". "/>
+    </names>
+  </macro>
+
+  <macro name="chapter-container">
+    <group>
+      <text value="[In: "/>
+      <text macro="editor-bib"/>
+      <text value=" (szerk.) "/>
+      <text variable="container-title" font-style="italic"/>
+      <text value=".]."/>
+    </group>
+  </macro>
+
+  <macro name="doi">
+    <choose>
+      <if variable="DOI">
+        <text variable="DOI" prefix=" DOI: "/>
+      </if>
+    </choose>
+  </macro>
+
+  <macro name="isbn">
+    <choose>
+      <if variable="ISBN">
+        <text variable="ISBN" prefix=" ISBN: "/>
+      </if>
+    </choose>
+  </macro>
+
+  <citation et-al-min="3" et-al-use-first="1" disambiguate-add-year-suffix="true" collapse="year">
+    <sort>
+      <key macro="author-cite"/>
+      <key macro="year"/>
+    </sort>
+    <layout prefix="(" suffix=")" delimiter="; ">
+      <group delimiter=", ">
+        <text macro="author-cite"/>
+        <text macro="year"/>
+        <group delimiter=" ">
+          <label variable="locator" form="short"/>
+          <text variable="locator"/>
+        </group>
+      </group>
+    </layout>
+  </citation>
+
+  <bibliography et-al-min="999" et-al-use-first="999" entry-spacing="0" line-spacing="1" hanging-indent="false">
+    <sort>
+      <key macro="author-bib"/>
+      <key macro="year"/>
+      <key variable="title"/>
+    </sort>
+    <layout>
+      <choose>
+        <if type="article-journal article article-magazine article-newspaper" match="any">
+          <group>
+            <text macro="author-bib" suffix=":"/>
+            <text macro="year" prefix=" " suffix=". "/>
+            <text macro="title" suffix=". "/>
+            <text macro="journal"/>
+            <text macro="doi"/>
+            <text value="."/>
+          </group>
+        </if>
+
+        <else-if type="chapter paper-conference" match="any">
+          <group>
+            <text macro="author-bib" suffix=":"/>
+            <text macro="year" prefix=" " suffix=". "/>
+            <text macro="title" suffix=". "/>
+            <text macro="chapter-container" suffix=" "/>
+            <text macro="publisher"/>
+            <text variable="page" prefix=", "/>
+            <text macro="doi"/>
+            <text macro="isbn"/>
+            <text value="."/>
+          </group>
+        </else-if>
+
+        <else-if type="book" match="any">
+          <group>
+            <text macro="author-bib" suffix=":"/>
+            <text macro="year" prefix=" " suffix=". "/>
+            <text macro="title" suffix=". "/>
+            <text macro="publisher"/>
+            <text macro="isbn"/>
+            <text value="."/>
+          </group>
+        </else-if>
+
+        <else>
+          <group>
+            <text macro="author-bib" suffix=":"/>
+            <text macro="year" prefix=" " suffix=". "/>
+            <text macro="title"/>
+            <text value="."/>
+          </group>
+        </else>
+      </choose>
+    </layout>
+  </bibliography>
+</style>
