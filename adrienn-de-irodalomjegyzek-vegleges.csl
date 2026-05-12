@@ -10,15 +10,16 @@
   </info>
 
   <locale xml:lang="hu-HU">
-    <terms>
-      <term name="and">és</term>
-      <term name="no date">é. n.</term>
-      <term name="editor" form="short">
-        <single>szerk.</single>
-        <multiple>szerk.</multiple>
-      </term>
-    </terms>
-  </locale>
+  <terms>
+    <term name="and">és</term>
+    <term name="et-al">et al.</term>
+    <term name="no date">é. n.</term>
+    <term name="editor" form="short">
+      <single>szerk.</single>
+      <multiple>szerk.</multiple>
+    </term>
+  </terms>
+</locale>
 
   <!-- Bibliográfiai szerzőlista:
        Gerőcs A. – Nagy T. – Nemes-Barnás K. – Májer J.
@@ -40,15 +41,16 @@
 
   <!-- Szövegközi hivatkozás: Campbell és Pedersen, 2007 -->
   <macro name="author-cite">
-    <names variable="author">
-      <name form="short" and="text" delimiter=", " delimiter-precedes-last="never" initialize-with=". "/>
-      <substitute>
-        <names variable="editor"/>
-        <names variable="translator"/>
-        <text variable="title" form="short"/>
-      </substitute>
-    </names>
-  </macro>
+  <names variable="author">
+    <name form="short" and="text" delimiter=", " delimiter-precedes-last="never" initialize-with=". "/>
+    <et-al/>
+    <substitute>
+      <names variable="editor"/>
+      <names variable="translator"/>
+      <text variable="title" form="short"/>
+    </substitute>
+  </names>
+</macro>
 
   <macro name="year">
     <choose>
