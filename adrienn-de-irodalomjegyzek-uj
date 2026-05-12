@@ -148,7 +148,7 @@
     </sort>
     <layout>
       <choose>
-        <if type="article-journal article article-magazine article-newspaper" match="any">
+       <if type="article-journal article-magazine article-newspaper" match="any">
           <group>
             <text macro="author-bib" suffix=":"/>
             <text macro="year" prefix=" " suffix=". "/>
