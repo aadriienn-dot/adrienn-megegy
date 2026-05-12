@@ -13,6 +13,7 @@
   <terms>
     <term name="and">és</term>
     <term name="et-al">et al.</term>
+    <term name="and others">et al.</term>
     <term name="no date">é. n.</term>
     <term name="editor" form="short">
       <single>szerk.</single>
@@ -42,8 +43,12 @@
   <!-- Szövegközi hivatkozás: Campbell és Pedersen, 2007 -->
   <macro name="author-cite">
   <names variable="author">
-    <name form="short" and="text" delimiter=", " delimiter-precedes-last="never" initialize-with=". "/>
-    <et-al/>
+    <name form="short"
+          and="text"
+          delimiter=", "
+          delimiter-precedes-last="never"
+          initialize-with=". "/>
+    <et-al term="and others"/>
     <substitute>
       <names variable="editor"/>
       <names variable="translator"/>
