@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <style xmlns="http://purl.org/net/xbiblio/csl" class="in-text" version="1.0" demote-non-dropping-particle="sort-only" default-locale="en-US">
   <info>
-    <title>Adrienn DE irodalomjegyzek veglegesetal</title>
+    <title>Adrienn DE irodalomjegyzek veglegesetaluj</title>
     <id>http://www.zotero.org/styles/adrienn-de-irodalomjegyzek-vegleges</id>
     <link href="http://www.zotero.org/styles/adrienn-de-irodalomjegyzek-vegleges" rel="self"/>
     <category citation-format="author-date"/>
@@ -13,7 +13,6 @@
   <terms>
     <term name="and">és</term>
     <term name="et-al">et al.</term>
-    <term name="and others">et al.</term>
     <term name="no date">é. n.</term>
     <term name="editor" form="short">
       <single>szerk.</single>
@@ -43,12 +42,8 @@
   <!-- Szövegközi hivatkozás: Campbell és Pedersen, 2007 -->
   <macro name="author-cite">
   <names variable="author">
-    <name form="short"
-          and="text"
-          delimiter=", "
-          delimiter-precedes-last="never"
-          initialize-with=". "/>
-    <et-al term="and others"/>
+    <name form="short" and="text" delimiter=", " delimiter-precedes-last="never" initialize-with=". "/>
+    <et-al/>
     <substitute>
       <names variable="editor"/>
       <names variable="translator"/>
